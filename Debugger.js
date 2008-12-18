@@ -77,9 +77,9 @@ function DebugStart() {
   if (!this.debugW || this.debugW.closed) { // open the debugger window
     debugW = window.open('','debugW'+encWN(this.id),"width=480,height=320,scrollbars=yes,resizable=yes");
     if (!debugW)
-      debugW = window.open("Debugger.html","debugW"+encWN(this.id),"width=480,height=320,scrollbars=yes,resizable=yes");
+      debugW = window.open(this.prefix+"Debugger.html","debugW"+encWN(this.id),"width=480,height=320,scrollbars=yes,resizable=yes");
     else if (!debugW.location.href.match(/Debugger.html$/))
-      debugW.location.href = "Debugger.html";
+      debugW.location.href = this.prefix+"Debugger.html";
     
     this.debugW = debugW;
     
@@ -104,12 +104,14 @@ function DebugStop() {
   this.debug = false;
 }
 
-function Debugger(lvl,id) {
+function Debugger(lvl,id, prefix) {
   this.lvl = lvl || 0;
   if (this.lvl > DEBUGGER_MAX_LEVEL)
     this.lvl = DEBUGGER_MAX_LEVEL;
 
   this.id = id || '';
+
+  this.prefix = prefix || '';
 
   this.debugMsgs = new Array();
 

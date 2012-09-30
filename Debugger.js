@@ -36,7 +36,7 @@ function encWN(wName) {
 }
 
 function htmlEnc(str) {
-  if (!str)
+  if (!str || typeof str != 'string')
     return null;
 
   str = str.replace(/&/g,"&amp;");
